@@ -42,27 +42,12 @@ export class AppComponent {
 
   public bubbleChartOptions: ChartConfiguration<"bubble">["options"] = {
     responsive: true,
-    scales: {
-      x: {
-        min: 2010,
-        max: 2023,
-      },
-      y: {
-        min: 0,
-        max: 100,
-      },
-    },
   };
 
   public bubbleChartDatasets: ChartConfiguration<"bubble">["data"]["datasets"] =
     [
       {
         data: this.chartPoints,
-        // data: [
-        //   { x: 2010, y: 50, r: 10 },
-        //   { x: 2011, y: 50, r: 10 },
-        //   { x: 2012, y: 50, r: 10 },
-        // ],
         label: "Conference",
       },
     ];
