@@ -30,7 +30,7 @@ export class AppComponent {
       this.chartPoints.push({
         x: new Date((confData as ConfData).confDate).getTime(),
         y: Math.round((confData as ConfData).diversityPercentage * 100),
-        r: 5,
+        r: (confData as ConfData).totalSpeakers / 10,
       });
     });
 
