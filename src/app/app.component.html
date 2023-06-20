@@ -4,6 +4,15 @@
 <div class="content" role="main">
   <!-- Resources -->
 
+  <canvas
+    baseChart
+    [datasets]="bubbleChartDatasets"
+    [options]="bubbleChartOptions"
+    [legend]="bubbleChartLegend"
+    [type]="'bubble'"
+  >
+  </canvas>
+
   <button type="button" (click)="download()">Download</button>
   <p *ngIf="contents">Contents: "{{ contents }}"</p>
 
