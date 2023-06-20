@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
 import { ConfDataService } from "./confdata/confdata.service";
 import { BubbleDataPoint, ChartConfiguration } from "chart.js";
+import "chartjs-adapter-date-fns";
 
 class ConfData {
+  confDate: Date = new Date();
   year: number = 0;
   totalSpeakers: number = 0;
   diversityPercentage: number = 0;
@@ -26,11 +28,12 @@ export class AppComponent {
   createChartPoints(rawData: Object[]) {
     rawData.forEach((confData: Object, _i: number) => {
       this.chartPoints.push({
-        x: +(confData as ConfData).year,
+        x: new Date((confData as ConfData).confDate).getTime(),
         y: Math.round((confData as ConfData).diversityPercentage * 100),
         r: 5,
       });
     });
+
     this.confDataLoaded = true;
   }
 
@@ -42,6 +45,16 @@ export class AppComponent {
 
   public bubbleChartOptions: ChartConfiguration<"bubble">["options"] = {
     responsive: true,
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          displayFormats: {
+            year: "YYYY",
+          },
+        },
+      },
+    },
   };
 
   public bubbleChartDatasets: ChartConfiguration<"bubble">["data"]["datasets"] =
