@@ -1,14 +1,13 @@
 import { Component } from "@angular/core";
-import { ConfDataService } from "./confdata/confdata.service";
+import { ConfDataService } from "./confdata.service";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: "app-confdata",
+  templateUrl: "./confdata.component.html",
+  styleUrls: ["./confdata.component.css"],
   providers: [ConfDataService],
 })
-export class AppComponent {
-  title = "xxtechconfspeakers-fe";
+export class ConfdataComponent {
   contents: string | undefined;
   constructor(private confDataService: ConfDataService) {}
 
