@@ -4,17 +4,19 @@
 <div class="content" role="main">
   <!-- Resources -->
 
-  <canvas
-    baseChart
-    [datasets]="bubbleChartDatasets"
-    [options]="bubbleChartOptions"
-    [legend]="bubbleChartLegend"
-    [type]="'bubble'"
+  <div
+    *ngIf="confDataLoaded"
+    style="position: relative; height: 80vh; width: 80vw"
   >
-  </canvas>
-
-  <button type="button" (click)="download()">Download</button>
-  <p *ngIf="contents">Contents: "{{ contents }}"</p>
+    <canvas
+      baseChart
+      [datasets]="bubbleChartDatasets"
+      [options]="bubbleChartOptions"
+      [legend]="false"
+      [type]="'bubble'"
+    >
+    </canvas>
+  </div>
 
   <!-- Links -->
   <div class="card-container"></div>

@@ -1,6 +1,12 @@
 import { Component } from "@angular/core";
 import { ConfDataService } from "./confdata/confdata.service";
-import { ChartConfiguration } from "chart.js";
+import { BubbleDataPoint, ChartConfiguration } from "chart.js";
+
+class ConfData {
+  year: number = 0;
+  totalSpeakers: number = 0;
+  diversityPercentage: number = 0;
+}
 
 @Component({
   selector: "app-root",
@@ -10,44 +16,54 @@ import { ChartConfiguration } from "chart.js";
 })
 export class AppComponent {
   title = "xxtechconfspeakers-fe";
-  contents: string | undefined;
-  constructor(private confDataService: ConfDataService) {}
+  chartPoints: BubbleDataPoint[] = [];
+  confDataLoaded = false;
 
-  clear() {
-    this.contents = undefined;
+  constructor(private confDataService: ConfDataService) {
+    this.download();
+  }
+
+  createChartPoints(rawData: Object[]) {
+    rawData.forEach((confData: Object, _i: number) => {
+      this.chartPoints.push({
+        x: +(confData as ConfData).year,
+        y: Math.round((confData as ConfData).diversityPercentage * 100),
+        r: 5,
+      });
+    });
+    this.confDataLoaded = true;
   }
 
   download() {
     this.confDataService
       .getTextFile("TechConfSpeakers")
-      .subscribe((results) => (this.contents = results));
+      .subscribe((results) => this.createChartPoints(JSON.parse(results)));
   }
 
   public bubbleChartOptions: ChartConfiguration<"bubble">["options"] = {
-    responsive: false,
+    responsive: true,
     scales: {
       x: {
-        min: 0,
-        max: 30,
+        min: 2010,
+        max: 2023,
       },
       y: {
         min: 0,
-        max: 30,
+        max: 100,
       },
     },
   };
-  public bubbleChartLegend = true;
 
   public bubbleChartDatasets: ChartConfiguration<"bubble">["data"]["datasets"] =
     [
       {
-        data: [
-          { x: 10, y: 10, r: 10 },
-          { x: 15, y: 5, r: 15 },
-          { x: 26, y: 12, r: 23 },
-          { x: 7, y: 8, r: 8 },
-        ],
-        label: "Series A",
+        data: this.chartPoints,
+        // data: [
+        //   { x: 2010, y: 50, r: 10 },
+        //   { x: 2011, y: 50, r: 10 },
+        //   { x: 2012, y: 50, r: 10 },
+        // ],
+        label: "Conference",
       },
     ];
 }
