@@ -1,10 +1,15 @@
 import { Component } from "@angular/core";
 import { ConfDataService } from "./confdata/confdata.service";
-import { BubbleDataPoint, ChartConfiguration } from "chart.js";
+import { BubbleDataPoint, ChartConfiguration, TooltipItem } from "chart.js";
 import "chartjs-adapter-date-fns";
 
 class ConfData {
   confDate: Date = new Date();
+  name: string = "";
+  location: string = "";
+  numberOfWomen: number = 0;
+  numberOfMen: number = 0;
+  dateAdded: Date = new Date();
   year: number = 0;
   totalSpeakers: number = 0;
   diversityPercentage: number = 0;
@@ -28,6 +33,7 @@ export class AppComponent {
   createChartPoints(rawData: Object[]) {
     rawData.forEach((confData: Object, _i: number) => {
       this.chartPoints.push({
+        ...confData,
         x: new Date((confData as ConfData).confDate).getTime(),
         y: Math.round((confData as ConfData).diversityPercentage * 100),
         r: (confData as ConfData).totalSpeakers / 10,
@@ -55,6 +61,14 @@ export class AppComponent {
         },
       },
     },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: tooltipLabel,
+          title: tooltipTitle,
+        },
+      },
+    },
   };
 
   public bubbleChartDatasets: ChartConfiguration<"bubble">["data"]["datasets"] =
@@ -65,3 +79,20 @@ export class AppComponent {
       },
     ];
 }
+
+const tooltipTitle = (context: TooltipItem<"bubble">[]) => {
+  var confData = context[0].raw as ConfData;
+  var label = `${confData.name}`;
+
+  return label;
+};
+
+const tooltipLabel = (context: TooltipItem<"bubble">) => {
+  var confData = context.raw as ConfData;
+  var displayDiversityPercentage = Math.round(
+    confData.diversityPercentage * 100
+  );
+  var label = `Diversity: ${displayDiversityPercentage}% of ${confData.totalSpeakers} total speakers`;
+
+  return label;
+};
