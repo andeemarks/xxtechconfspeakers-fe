@@ -24,6 +24,7 @@ class ConfData {
 export class AppComponent {
   title = "xxtechconfspeakers-fe";
   chartPoints: BubbleDataPoint[] = [];
+  chartPoints1: BubbleDataPoint[] = [];
   confDataLoaded = false;
 
   constructor(private confDataService: ConfDataService) {
@@ -40,6 +41,12 @@ export class AppComponent {
       });
     });
 
+    this.chartPoints1 = this.chartPoints.filter(
+      (point) => point.y >= 30 && point.y <= 40
+    );
+    console.log(this.chartPoints1.length);
+    console.log(this.chartPoints1[0]);
+    console.log(this.chartPoints);
     this.confDataLoaded = true;
   }
 
@@ -62,6 +69,9 @@ export class AppComponent {
       },
     },
     plugins: {
+      legend: {
+        position: "bottom",
+      },
       tooltip: {
         displayColors: false,
         titleAlign: "center",
@@ -77,7 +87,39 @@ export class AppComponent {
     [
       {
         data: this.chartPoints,
-        label: "Conference",
+        label: "0% >= diversity <= 10%",
+        backgroundColor: "rgb(255, 0, 0)",
+        borderColor: "rgb(0, 0, 0)",
+      },
+      {
+        data: this.chartPoints,
+        label: "10% >= diversity <= 20%",
+        backgroundColor: "rgb(255, 0, 255)",
+        borderColor: "rgb(0, 0, 0)",
+      },
+      {
+        data: this.chartPoints,
+        label: "20% >= diversity <= 30%",
+        backgroundColor: "rgb(255, 165, 0)",
+        borderColor: "rgb(0, 0, 0)",
+      },
+      {
+        data: this.chartPoints,
+        label: "30% >= diversity <= 40%",
+        backgroundColor: "rgb(0, 0, 255)",
+        borderColor: "rgb(0, 0, 0)",
+      },
+      {
+        data: this.chartPoints,
+        label: "40% >= diversity <= 50%",
+        backgroundColor: "rgb(0, 128, 0)",
+        borderColor: "rgb(0, 0, 0)",
+      },
+      {
+        data: this.chartPoints,
+        label: "50% >= diversity <= 100%",
+        backgroundColor: "rgb(255, 255, 255)",
+        borderColor: "rgb(0, 0, 0)",
       },
     ];
 }
@@ -91,10 +133,7 @@ const tooltipTitle = (context: TooltipItem<"bubble">[]) => {
 
 const tooltipLabel = (context: TooltipItem<"bubble">) => {
   var confData = context.raw as ConfData;
-  var displayDiversityPercentage = Math.round(
-    confData.diversityPercentage * 100
-  );
-  var label = `Diversity: ${displayDiversityPercentage}% of ${confData.totalSpeakers} total speakers`;
+  var label = `Diversity: ${context.parsed.y}% of ${confData.totalSpeakers} total speakers`;
 
   return label;
 };
