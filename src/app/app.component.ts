@@ -63,6 +63,8 @@ export class AppComponent {
     },
     plugins: {
       tooltip: {
+        displayColors: false,
+        titleAlign: "center",
         callbacks: {
           label: tooltipLabel,
           title: tooltipTitle,
@@ -82,7 +84,7 @@ export class AppComponent {
 
 const tooltipTitle = (context: TooltipItem<"bubble">[]) => {
   var confData = context[0].raw as ConfData;
-  var label = `${confData.name}`;
+  var label = `${confData.name} - ${confData.location}`;
 
   return label;
 };
