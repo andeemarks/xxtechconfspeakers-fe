@@ -64,14 +64,15 @@ export class AppComponent {
 
   public bubbleChartOptions: ChartConfiguration<"bubble">["options"] = {
     responsive: true,
-    backgroundColor: "rgb(0, 0, 0)",
     scales: {
-      // ticks: {
-      //   display: true,
-      // },
       y: {
         grid: { color: "#565656" },
-        ticks: { color: "#000000" },
+        ticks: {
+          color: "#000000",
+          callback: function (value) {
+            return value + "%";
+          },
+        },
       },
       x: {
         grid: { display: false },
