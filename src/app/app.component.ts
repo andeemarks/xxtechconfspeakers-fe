@@ -1,6 +1,11 @@
 import { Component } from "@angular/core";
 import { ConfDataService } from "./confdata/confdata.service";
-import { BubbleDataPoint, ChartConfiguration, TooltipItem } from "chart.js";
+import {
+  BubbleDataPoint,
+  Chart,
+  ChartConfiguration,
+  TooltipItem,
+} from "chart.js";
 import "chartjs-adapter-date-fns";
 
 class ConfData {
@@ -46,7 +51,8 @@ export class AppComponent {
     );
     console.log(this.chartPoints1.length);
     console.log(this.chartPoints1[0]);
-    console.log(this.chartPoints);
+    console.log(this.chartPoints[0]);
+    console.log(this.chartPoints[0] == this.chartPoints1[0]);
     this.confDataLoaded = true;
   }
 
@@ -58,6 +64,7 @@ export class AppComponent {
 
   public bubbleChartOptions: ChartConfiguration<"bubble">["options"] = {
     responsive: true,
+    backgroundColor: "rgb(0, 0, 0)",
     scales: {
       x: {
         type: "time",
