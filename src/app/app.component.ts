@@ -87,6 +87,12 @@ export class AppComponent {
       },
     },
     plugins: {
+      title: {
+        display: true,
+        color: "#000000",
+        font: { size: 14 },
+        text: "Diversity over time",
+      },
       legend: {
         position: "bottom",
         title: {
