@@ -70,7 +70,7 @@ export class AppComponent {
         grid: { color: "#565656" },
       },
       x: {
-        grid: { color: "#565656" },
+        grid: { display: false },
         type: "time",
         time: {
           displayFormats: {
