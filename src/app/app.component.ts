@@ -1,11 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, LOCALE_ID } from "@angular/core";
+import { formatDate, getLocaleId } from "@angular/common";
 import { ConfDataService } from "./confdata/confdata.service";
-import {
-  BubbleDataPoint,
-  Chart,
-  ChartConfiguration,
-  TooltipItem,
-} from "chart.js";
+import { BubbleDataPoint, ChartConfiguration, TooltipItem } from "chart.js";
 import "chartjs-adapter-date-fns";
 
 class ConfData {
@@ -108,6 +104,7 @@ export class AppComponent {
         callbacks: {
           label: tooltipLabel,
           title: tooltipTitle,
+          afterTitle: tooltipSubtitle,
         },
       },
     },
@@ -157,6 +154,17 @@ export class AppComponent {
 const tooltipTitle = (context: TooltipItem<"bubble">[]) => {
   var confData = context[0].raw as ConfData;
   var label = `${confData.name} - ${confData.location}`;
+
+  return label;
+};
+
+const tooltipSubtitle = (context: TooltipItem<"bubble">[]) => {
+  var confData = context[0].raw as ConfData;
+  var label = `(${formatDate(
+    confData.confDate,
+    "d MMM YYYY",
+    getLocaleId("en-AU")
+  )})`;
 
   return label;
 };
