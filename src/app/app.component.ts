@@ -66,7 +66,11 @@ export class AppComponent {
     responsive: true,
     backgroundColor: "rgb(0, 0, 0)",
     scales: {
+      y: {
+        grid: { color: "#565656" },
+      },
       x: {
+        grid: { color: "#565656" },
         type: "time",
         time: {
           displayFormats: {
@@ -78,6 +82,12 @@ export class AppComponent {
     plugins: {
       legend: {
         position: "bottom",
+        title: {
+          color: "rgb(255, 255, 255)",
+        },
+        labels: {
+          color: "rgb(255, 255, 255)",
+        },
       },
       tooltip: {
         displayColors: false,
