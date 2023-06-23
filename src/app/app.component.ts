@@ -66,11 +66,16 @@ export class AppComponent {
     responsive: true,
     backgroundColor: "rgb(0, 0, 0)",
     scales: {
+      // ticks: {
+      //   display: true,
+      // },
       y: {
         grid: { color: "#565656" },
+        ticks: { color: "#000000" },
       },
       x: {
         grid: { display: false },
+        ticks: { color: "#000000" },
         type: "time",
         time: {
           displayFormats: {
