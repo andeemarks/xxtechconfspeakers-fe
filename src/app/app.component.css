@@ -29,6 +29,12 @@ p {
   background-color: #4d4d4d;
 }
 
+.chart-title {
+  text-align: center;
+  background-color: white;
+  font-weight: 600;
+}
+
 .toolbar {
   position: absolute;
   top: 0;

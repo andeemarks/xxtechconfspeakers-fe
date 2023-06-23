@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID } from "@angular/core";
+import { Component } from "@angular/core";
 import { formatDate, getLocaleId } from "@angular/common";
 import { ConfDataService } from "./confdata/confdata.service";
 import { BubbleDataPoint, ChartConfiguration, TooltipItem } from "chart.js";
@@ -83,12 +83,6 @@ export class AppComponent {
       },
     },
     plugins: {
-      title: {
-        display: true,
-        color: "#000000",
-        font: { size: 14 },
-        text: "Diversity over time",
-      },
       legend: {
         position: "bottom",
         title: {
