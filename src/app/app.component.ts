@@ -76,12 +76,13 @@ export class AppComponent {
       },
       x: {
         grid: { display: false },
-        ticks: { color: "#000000" },
+        ticks: {
+          color: "#000000",
+          autoSkip: true,
+        },
         type: "time",
         time: {
-          displayFormats: {
-            year: "YYYY",
-          },
+          unit: "year",
         },
       },
     },
