@@ -26,17 +26,6 @@ p {
   flex: 1;
 }
 
-.chart {
-  background-color: #4d4d4d;
-}
-
-.chart-title {
-  padding: 10px;
-  text-align: center;
-  background-color: white;
-  font-weight: 600;
-}
-
 .toolbar {
   position: relative;
   top: 0;

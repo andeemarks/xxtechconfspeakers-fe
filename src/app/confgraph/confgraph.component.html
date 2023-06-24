@@ -1,0 +1,13 @@
+<div *ngIf="confDataLoaded" style="position: relative; width: 80vw">
+  <div class="chart-title">Diversity over time</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <canvas
+    class="chart"
+    baseChart
+    [datasets]="bubbleChartDatasets"
+    [options]="bubbleChartOptions"
+    [type]="'bubble'"
+  >
+  </canvas>
+</div>
