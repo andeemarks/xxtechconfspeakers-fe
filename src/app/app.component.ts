@@ -132,37 +132,37 @@ export class AppComponent {
         data: this.chartPoints1,
         label: "0% >= diversity <= 10%",
         backgroundColor: "rgb(255, 0, 0)",
-        borderColor: "rgb(0, 0, 0)",
+        borderColor: "rgb(255, 0, 0)",
       },
       {
         data: this.chartPoints2,
         label: "10% >= diversity <= 20%",
         backgroundColor: "rgb(255, 0, 255)",
-        borderColor: "rgb(0, 0, 0)",
+        borderColor: "rgb(255, 0, 255)",
       },
       {
         data: this.chartPoints3,
         label: "20% >= diversity <= 30%",
         backgroundColor: "rgb(255, 165, 0)",
-        borderColor: "rgb(0, 0, 0)",
+        borderColor: "rgb(255, 165, 0)",
       },
       {
         data: this.chartPoints4,
         label: "30% >= diversity <= 40%",
         backgroundColor: "rgb(0, 0, 255)",
-        borderColor: "rgb(0, 0, 0)",
+        borderColor: "rgb(0, 0, 255)",
       },
       {
         data: this.chartPoints5,
         label: "40% >= diversity <= 50%",
         backgroundColor: "rgb(0, 128, 0)",
-        borderColor: "rgb(0, 0, 0)",
+        borderColor: "rgb(0, 128, 0)",
       },
       {
         data: this.chartPoints6,
         label: "50% >= diversity <= 100%",
         backgroundColor: "rgb(255, 255, 255)",
-        borderColor: "rgb(0, 0, 0)",
+        borderColor: "rgb(255, 255, 255)",
       },
     ];
 }
