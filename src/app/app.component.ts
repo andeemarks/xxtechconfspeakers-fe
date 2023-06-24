@@ -24,8 +24,12 @@ class ConfData {
 })
 export class AppComponent {
   title = "xxtechconfspeakers-fe";
-  chartPoints: BubbleDataPoint[] = [];
   chartPoints1: BubbleDataPoint[] = [];
+  chartPoints2: BubbleDataPoint[] = [];
+  chartPoints3: BubbleDataPoint[] = [];
+  chartPoints4: BubbleDataPoint[] = [];
+  chartPoints5: BubbleDataPoint[] = [];
+  chartPoints6: BubbleDataPoint[] = [];
   confDataLoaded = false;
 
   constructor(private confDataService: ConfDataService) {
@@ -33,23 +37,41 @@ export class AppComponent {
   }
 
   createChartPoints(rawData: Object[]) {
-    rawData.forEach((confData: Object, _i: number) => {
-      this.chartPoints.push({
-        ...confData,
-        x: new Date((confData as ConfData).confDate).getTime(),
-        y: Math.round((confData as ConfData).diversityPercentage * 100),
-        r: (confData as ConfData).totalSpeakers / 10,
-      });
+    rawData.forEach((rawConfData: Object, _i: number) => {
+      var confData = rawConfData as ConfData;
+      var chartPoints = this.composeConfData(confData);
+      switch (true) {
+        case confData.diversityPercentage < 0.1:
+          this.chartPoints1.push(chartPoints);
+          break;
+        case confData.diversityPercentage < 0.2:
+          this.chartPoints2.push(chartPoints);
+          break;
+        case confData.diversityPercentage < 0.3:
+          this.chartPoints3.push(chartPoints);
+          break;
+        case confData.diversityPercentage < 0.4:
+          this.chartPoints4.push(chartPoints);
+          break;
+        case confData.diversityPercentage < 0.5:
+          this.chartPoints5.push(chartPoints);
+          break;
+        default:
+          this.chartPoints6.push(chartPoints);
+          break;
+      }
     });
 
-    this.chartPoints1 = this.chartPoints.filter(
-      (point) => point.y >= 30 && point.y <= 40
-    );
-    console.log(this.chartPoints1.length);
-    console.log(this.chartPoints1[0]);
-    console.log(this.chartPoints[0]);
-    console.log(this.chartPoints[0] == this.chartPoints1[0]);
     this.confDataLoaded = true;
+  }
+
+  composeConfData(confData: ConfData) {
+    return {
+      ...confData,
+      x: new Date(confData.confDate).getTime(),
+      y: Math.round(confData.diversityPercentage * 100),
+      r: (confData as ConfData).totalSpeakers / 10,
+    };
   }
 
   download() {
@@ -107,37 +129,37 @@ export class AppComponent {
   public bubbleChartDatasets: ChartConfiguration<"bubble">["data"]["datasets"] =
     [
       {
-        data: this.chartPoints,
+        data: this.chartPoints1,
         label: "0% >= diversity <= 10%",
         backgroundColor: "rgb(255, 0, 0)",
         borderColor: "rgb(0, 0, 0)",
       },
       {
-        data: this.chartPoints,
+        data: this.chartPoints2,
         label: "10% >= diversity <= 20%",
         backgroundColor: "rgb(255, 0, 255)",
         borderColor: "rgb(0, 0, 0)",
       },
       {
-        data: this.chartPoints,
+        data: this.chartPoints3,
         label: "20% >= diversity <= 30%",
         backgroundColor: "rgb(255, 165, 0)",
         borderColor: "rgb(0, 0, 0)",
       },
       {
-        data: this.chartPoints,
+        data: this.chartPoints4,
         label: "30% >= diversity <= 40%",
         backgroundColor: "rgb(0, 0, 255)",
         borderColor: "rgb(0, 0, 0)",
       },
       {
-        data: this.chartPoints,
+        data: this.chartPoints5,
         label: "40% >= diversity <= 50%",
         backgroundColor: "rgb(0, 128, 0)",
         borderColor: "rgb(0, 0, 0)",
       },
       {
-        data: this.chartPoints,
+        data: this.chartPoints6,
         label: "50% >= diversity <= 100%",
         backgroundColor: "rgb(255, 255, 255)",
         borderColor: "rgb(0, 0, 0)",

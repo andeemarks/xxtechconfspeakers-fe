@@ -31,18 +31,21 @@ p {
 }
 
 .chart-title {
+  padding: 10px;
   text-align: center;
   background-color: white;
   font-weight: 600;
 }
 
 .toolbar {
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   height: 60px;
   align-items: center;
   color: white;
+  width: 80vw;
 }
 
 .toolbar img {
