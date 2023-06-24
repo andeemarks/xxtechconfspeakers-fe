@@ -1,11 +1,23 @@
 import { Component } from "@angular/core";
-import { MatTableModule } from "@angular/material/table";
+import { ConfDataService } from "./confdata.service";
 
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
+}
+
+interface ConfData {
+  confDate: Date;
+  name: string;
+  location: string;
+  numberOfWomen: number;
+  numberOfMen: number;
+  dateAdded: Date;
+  year: number;
+  totalSpeakers: number;
+  diversityPercentage: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -28,10 +40,33 @@ const ELEMENT_DATA: PeriodicElement[] = [
   selector: "app-confdata",
   styleUrls: ["confdata.component.css"],
   templateUrl: "confdata.component.html",
-  // standalone: true,
-  // imports: [MatTableModule],
+  providers: [ConfDataService],
 })
 export class ConfdataComponent {
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = [
+    "name",
+    "location",
+    "year",
+    "diversityPercentage",
+  ];
+  confData: ConfData[] = [];
+  confDataLoaded = false;
+
+  constructor(private confDataService: ConfDataService) {
+    this.download();
+  }
+  download() {
+    this.confDataService
+      .getTextFile("TechConfSpeakers")
+      .subscribe((results) => this.createconfData(JSON.parse(results)));
+  }
+
+  createconfData(rawData: Object[]) {
+    rawData.forEach((rawConfData: Object) => {
+      var confData = rawConfData as ConfData;
+      this.confData.push(confData);
+    });
+
+    this.confDataLoaded = true;
+  }
 }
