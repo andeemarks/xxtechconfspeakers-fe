@@ -1,5 +1,6 @@
 .confdata-list {
   width: 100%;
+  vertical-align: middle;
 }
 
 .mat-column-rank {
@@ -18,7 +19,8 @@
   font-weight: bold;
 }
 
-.conf-location {
+.conf-location,
+.diversity-ratio {
   font-size: 10px;
 }
 
