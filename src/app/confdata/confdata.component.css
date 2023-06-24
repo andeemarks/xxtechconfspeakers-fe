@@ -14,12 +14,19 @@
   font-size: 20px;
 }
 
+.conf-title {
+  font-weight: bold;
+}
+
+.conf-location {
+  font-size: 10px;
+}
+
 .mat-column-diversityPercentageBar {
   font-style: italic;
 }
 
 .mat-column-diversityPercentage {
-  width: 32px;
   text-align: center;
   font-weight: bold;
 }
