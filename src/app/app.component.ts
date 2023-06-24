@@ -4,16 +4,16 @@ import { ConfDataService } from "./confdata/confdata.service";
 import { BubbleDataPoint, ChartConfiguration, TooltipItem } from "chart.js";
 import "chartjs-adapter-date-fns";
 
-class ConfData {
-  confDate: Date = new Date();
-  name: string = "";
-  location: string = "";
-  numberOfWomen: number = 0;
-  numberOfMen: number = 0;
-  dateAdded: Date = new Date();
-  year: number = 0;
-  totalSpeakers: number = 0;
-  diversityPercentage: number = 0;
+interface ConfData {
+  confDate: Date;
+  name: string;
+  location: string;
+  numberOfWomen: number;
+  numberOfMen: number;
+  dateAdded: Date;
+  year: number;
+  totalSpeakers: number;
+  diversityPercentage: number;
 }
 
 @Component({
@@ -36,28 +36,33 @@ export class AppComponent {
     this.download();
   }
 
+  download() {
+    this.confDataService
+      .getTextFile("TechConfSpeakers")
+      .subscribe((results) => this.createChartPoints(JSON.parse(results)));
+  }
+
   createChartPoints(rawData: Object[]) {
     rawData.forEach((rawConfData: Object, _i: number) => {
       var confData = rawConfData as ConfData;
-      var chartPoints = this.composeConfData(confData);
       switch (true) {
         case confData.diversityPercentage < 0.1:
-          this.chartPoints1.push(chartPoints);
+          this.addChartPointToCohort(this.chartPoints1, confData);
           break;
         case confData.diversityPercentage < 0.2:
-          this.chartPoints2.push(chartPoints);
+          this.addChartPointToCohort(this.chartPoints2, confData);
           break;
         case confData.diversityPercentage < 0.3:
-          this.chartPoints3.push(chartPoints);
+          this.addChartPointToCohort(this.chartPoints3, confData);
           break;
         case confData.diversityPercentage < 0.4:
-          this.chartPoints4.push(chartPoints);
+          this.addChartPointToCohort(this.chartPoints4, confData);
           break;
         case confData.diversityPercentage < 0.5:
-          this.chartPoints5.push(chartPoints);
+          this.addChartPointToCohort(this.chartPoints5, confData);
           break;
         default:
-          this.chartPoints6.push(chartPoints);
+          this.addChartPointToCohort(this.chartPoints6, confData);
           break;
       }
     });
@@ -65,19 +70,13 @@ export class AppComponent {
     this.confDataLoaded = true;
   }
 
-  composeConfData(confData: ConfData) {
-    return {
+  addChartPointToCohort(cohort: BubbleDataPoint[], confData: ConfData) {
+    cohort.push({
       ...confData,
       x: new Date(confData.confDate).getTime(),
       y: Math.round(confData.diversityPercentage * 100),
       r: (confData as ConfData).totalSpeakers / 10,
-    };
-  }
-
-  download() {
-    this.confDataService
-      .getTextFile("TechConfSpeakers")
-      .subscribe((results) => this.createChartPoints(JSON.parse(results)));
+    });
   }
 
   public bubbleChartOptions: ChartConfiguration<"bubble">["options"] = {
