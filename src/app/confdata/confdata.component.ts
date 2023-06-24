@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { ConfDataService } from "./confdata.service";
 
 interface ConfData {
@@ -35,6 +35,7 @@ export class ConfdataComponent {
   constructor(private confDataService: ConfDataService) {
     this.download();
   }
+
   download() {
     this.confDataService
       .getTextFile("TechConfSpeakers")

@@ -1,0 +1,25 @@
+.confdata-list {
+  width: 100%;
+}
+
+.mat-column-rank {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-conf {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.mat-column-diversityPercentageBar {
+  font-style: italic;
+}
+
+.mat-column-diversityPercentage {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+}
