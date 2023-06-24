@@ -43,7 +43,7 @@ export class AppComponent {
   }
 
   createChartPoints(rawData: Object[]) {
-    rawData.forEach((rawConfData: Object, _i: number) => {
+    rawData.forEach((rawConfData: Object) => {
       var confData = rawConfData as ConfData;
       switch (true) {
         case confData.diversityPercentage < 0.1:
@@ -168,25 +168,22 @@ export class AppComponent {
 
 const tooltipTitle = (context: TooltipItem<"bubble">[]) => {
   var confData = context[0].raw as ConfData;
-  var label = `${confData.name} - ${confData.location}`;
 
-  return label;
+  return `${confData.name} - ${confData.location}`;
 };
 
 const tooltipSubtitle = (context: TooltipItem<"bubble">[]) => {
   var confData = context[0].raw as ConfData;
-  var label = `(${formatDate(
+
+  return `(${formatDate(
     confData.confDate,
     "d MMM YYYY",
     getLocaleId("en-AU")
   )})`;
-
-  return label;
 };
 
 const tooltipLabel = (context: TooltipItem<"bubble">) => {
   var confData = context.raw as ConfData;
-  var label = `Diversity: ${context.parsed.y}% of ${confData.totalSpeakers} total speakers`;
 
-  return label;
+  return `Diversity: ${context.parsed.y}% of ${confData.totalSpeakers} total speakers`;
 };
