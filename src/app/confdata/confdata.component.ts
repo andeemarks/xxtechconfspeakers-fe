@@ -11,6 +11,7 @@ interface ConfData {
   year: number;
   totalSpeakers: number;
   diversityPercentage: number;
+  diversityPercentageNormalised: number;
 }
 
 /**
@@ -45,6 +46,9 @@ export class ConfdataComponent {
   createconfData(rawData: Object[]) {
     rawData.forEach((rawConfData: Object) => {
       var confData = rawConfData as ConfData;
+      confData.diversityPercentageNormalised = Math.round(
+        confData.diversityPercentage * 100
+      );
       this.confData.push(confData);
     });
 

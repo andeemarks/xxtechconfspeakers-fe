@@ -16,7 +16,13 @@
     <ng-container matColumnDef="diversityPercentageBar">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        {{ element.diversityPercentage }}
+        {{ element.diversityPercentageBar }}
+        <ng-container
+          *ngFor="
+            let _ of [].constructor(element.diversityPercentageNormalised)
+          "
+          >|</ng-container
+        >
       </td>
     </ng-container>
 
