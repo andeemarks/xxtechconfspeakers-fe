@@ -48,6 +48,9 @@ export class ConfdataComponent {
       this.confData.push(confData);
     });
 
+    this.confData.sort((a, b) => {
+      return b.diversityPercentage - a.diversityPercentage;
+    });
     this.confDataLoaded = true;
   }
 }
