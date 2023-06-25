@@ -8,16 +8,36 @@
   color: white;
 }
 
-.mat-column-rank {
-  width: 32px;
-  border-right: 1px solid currentColor;
-  padding-right: 24px;
-  text-align: center;
+.mat-mdc-header-row {
+  color: white;
 }
 
-.mat-column-conf {
+.mat-mdc-table {
+  border-color: black;
+}
+
+.mat-column-rank {
+  width: 32px;
+  padding-right: 24px;
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+.mat-column-name {
   padding-left: 16px;
   font-size: 20px;
+  border-bottom: 3px solid black;
+}
+
+.mat-column-diversityPercentageBar {
+  padding-left: 16px;
+  border-bottom: 3px solid black;
+}
+
+.mat-column-diversityPercentage {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 3px solid black;
 }
 
 .conf-title {
@@ -57,9 +77,4 @@
 .diversity-percentage6 {
   background-color: white;
   color: black;
-}
-
-.mat-column-diversityPercentage {
-  text-align: center;
-  font-weight: bold;
 }
