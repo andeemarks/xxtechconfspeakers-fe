@@ -28,8 +28,19 @@
 
     <ng-container matColumnDef="diversityPercentage">
       <th mat-header-cell *matHeaderCellDef>%<br />(#f:#m)</th>
-      <td mat-cell *matCellDef="let element">
-        <div class="diversity-percentage">
+      <td
+        mat-cell
+        [ngClass]="{
+            'diversity-percentage6': element.diversityPercentage >= 0.5,
+            'diversity-percentage5': element.diversityPercentage >= 0.4,
+            'diversity-percentage4': element.diversityPercentage >= 0.3,
+            'diversity-percentage3': element.diversityPercentage >= 0.2,
+            'diversity-percentage2': element.diversityPercentage >= 0.1,
+            'diversity-percentage1': element.diversityPercentage < 0.1,
+          }"
+        *matCellDef="let element"
+      >
+        <div>
           {{ element.diversityPercentage | percent }}
         </div>
         <div class="diversity-ratio">
