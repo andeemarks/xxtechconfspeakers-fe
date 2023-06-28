@@ -1,3 +1,11 @@
+.mat-card {
+  border: 10px solid black;
+  border-radius: var(
+    --mdc-elevated-card-container-shape,
+    var(--mdc-shape-medium, 16px)
+  );
+}
+
 .mat-mdc-card-header {
   background-color: white;
   align-items: center;
