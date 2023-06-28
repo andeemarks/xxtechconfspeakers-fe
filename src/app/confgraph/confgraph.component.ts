@@ -30,6 +30,7 @@ export class ConfgraphComponent {
   chartPoints5: BubbleDataPoint[] = [];
   chartPoints6: BubbleDataPoint[] = [];
   confDataLoaded = false;
+
   constructor(private confDataService: ConfDataService) {
     this.download();
   }

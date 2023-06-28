@@ -9,10 +9,16 @@ import { ConfgraphComponent } from "./confgraph/confgraph.component";
 import { NgChartsModule } from "ng2-charts";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatTableModule } from "@angular/material/table";
-import { CalloutsComponent } from './callouts/callouts.component';
+import { CalloutsComponent } from "./callouts/callouts.component";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
-  declarations: [AppComponent, ConfdataComponent, ConfgraphComponent, CalloutsComponent],
+  declarations: [
+    AppComponent,
+    ConfdataComponent,
+    ConfgraphComponent,
+    CalloutsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,6 +26,7 @@ import { CalloutsComponent } from './callouts/callouts.component';
     NgChartsModule,
     NoopAnimationsModule,
     MatTableModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

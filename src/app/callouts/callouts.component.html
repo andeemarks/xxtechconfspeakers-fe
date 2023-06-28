@@ -1,4 +1,30 @@
-<p>callouts works!</p>
-<div *ngIf="confSummaryLoaded" style="position: relative; width: 80vw">
-  {{ confSummary!.totalConferencesTracked }}
+<div *ngIf="confSummaryLoaded">
+  <mat-card>
+    <mat-card-header
+      ><mat-card-title>Conferences tracked</mat-card-title></mat-card-header
+    >
+    <mat-card-content>
+      {{ confSummary!.totalConferencesTracked }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header
+      ><mat-card-title>Average f:m% (2023)</mat-card-title></mat-card-header
+    >
+    <mat-card-content>
+      {{ confSummary!.averageDiversityPercentage | percent }}
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header
+      ><mat-card-title>Last added</mat-card-title></mat-card-header
+    >
+    <mat-card-content>
+      {{ confSummary!.mostRecentlyAdded.name }} ({{
+        confSummary!.mostRecentlyAdded.year
+      }})
+      <br />
+      {{ confSummary!.mostRecentlyAdded.diversityPercentage | percent }}
+    </mat-card-content>
+  </mat-card>
 </div>
