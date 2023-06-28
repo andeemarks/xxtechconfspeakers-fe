@@ -9,9 +9,10 @@ import { ConfgraphComponent } from "./confgraph/confgraph.component";
 import { NgChartsModule } from "ng2-charts";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatTableModule } from "@angular/material/table";
+import { CalloutsComponent } from './callouts/callouts.component';
 
 @NgModule({
-  declarations: [AppComponent, ConfdataComponent, ConfgraphComponent],
+  declarations: [AppComponent, ConfdataComponent, ConfgraphComponent, CalloutsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
