@@ -1,0 +1,16 @@
+.mat-mdc-card-header {
+  background-color: white;
+  align-items: center;
+  font-weight: bold;
+
+  > .mat-mdc-card-header-text {
+    text-align: center;
+  }
+}
+
+.mat-mdc-card-content {
+  background-color: #4d4d4d;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
