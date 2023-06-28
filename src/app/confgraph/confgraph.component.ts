@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { formatDate, getLocaleId } from "@angular/common";
-import { ConfDataService } from "./confgraph.service";
+import { ConfDataService } from "../confdata/confdata.service";
 import { BubbleDataPoint, ChartConfiguration, TooltipItem } from "chart.js";
 import "chartjs-adapter-date-fns";
 
