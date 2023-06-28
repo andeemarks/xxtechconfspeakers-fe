@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { ConfDataService } from "./confdata.service";
 
 interface ConfData {
@@ -21,7 +21,6 @@ interface ConfData {
   selector: "app-confdata",
   styleUrls: ["confdata.component.css"],
   templateUrl: "confdata.component.html",
-  providers: [ConfDataService],
 })
 export class ConfdataComponent {
   displayedColumns: string[] = [

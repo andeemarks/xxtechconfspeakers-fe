@@ -20,7 +20,6 @@ interface ConfData {
   selector: "app-confgraph",
   templateUrl: "./confgraph.component.html",
   styleUrls: ["./confgraph.component.css"],
-  providers: [ConfDataService],
 })
 export class ConfgraphComponent {
   title = "xxtechconfspeakers-fe";
