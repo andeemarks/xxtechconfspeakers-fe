@@ -1,4 +1,4 @@
-.mat-card {
+::ng-deep .mat-card {
   border: 10px solid black;
   border-radius: var(
     --mdc-elevated-card-container-shape,
