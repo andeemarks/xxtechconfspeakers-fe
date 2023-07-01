@@ -4,12 +4,17 @@
 }
 
 .mat-mdc-header-row {
-  color: white;
   border-bottom: 3px solid black;
+  background-color: white;
 }
 
 .mat-mdc-table {
   border-color: black;
+  background-color: black;
+}
+
+.mat-mdc-cell {
+  color: white;
 }
 
 .mat-column-rank,
