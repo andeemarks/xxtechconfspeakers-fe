@@ -11,6 +11,7 @@
 .mat-mdc-table {
   border-color: black;
   background-color: black;
+  margin: 12px;
 }
 
 .mat-mdc-cell {
