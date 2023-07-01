@@ -1,6 +1,4 @@
 ::ng-deep .mat-card {
-  border: 10px solid black;
-
   border-radius: var(
     --mdc-elevated-card-container-shape,
     var(--mdc-shape-medium, 24px)
@@ -18,8 +16,19 @@
   }
 }
 
+.totalConferencesTracked {
+  font-size: 60px;
+}
+
+.averageDiversityPercentage {
+  font-size: 60px;
+}
+
+.mostRecentlyAdded {
+  font-size: 25px;
+}
+
 .mat-mdc-card {
-  padding: 10px 10px 10px 10px;
   margin: 12px;
 }
 
@@ -28,7 +37,6 @@
   color: white;
   font-weight: bold;
   text-align: center;
-  font-size: x-large;
   height: 60px;
   width: 20vw;
 }
