@@ -9,6 +9,7 @@ interface ConfData {
   numberOfMen: number;
   dateAdded: Date;
   year: number;
+  rank: number;
   totalSpeakers: number;
   diversityPercentage: number;
   diversityPercentageNormalised: number;
@@ -48,12 +49,31 @@ export class ConfdataComponent {
       confData.diversityPercentageNormalised = Math.round(
         confData.diversityPercentage * 100
       );
+      confData.rank = 1;
       this.confData.push(confData);
     });
 
     this.confData.sort((a, b) => {
       return b.diversityPercentage - a.diversityPercentage;
     });
+
+    this.confData = this.assignRanks(this.confData);
+
     this.confDataLoaded = true;
+  }
+
+  private assignRanks(confs: ConfData[]) {
+    var rank = 1;
+    for (var i = 0; i < confs.length; i++) {
+      if (
+        i > 0 &&
+        confs[i].diversityPercentage < confs[i - 1].diversityPercentage
+      ) {
+        rank++;
+      }
+      confs[i].rank = rank;
+    }
+
+    return confs;
   }
 }
