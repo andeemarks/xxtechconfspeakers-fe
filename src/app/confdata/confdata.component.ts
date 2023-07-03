@@ -17,6 +17,46 @@ interface ConfData {
   diversityPercentageNormalised: number;
 }
 
+class ConfDataCollection {
+  confData: ConfData[] = [];
+
+  add(conf: ConfData) {
+    conf.diversityPercentageNormalised = Math.round(
+      conf.diversityPercentage * 100
+    );
+
+    this.confData.push(conf);
+  }
+
+  sortByDiversity() {
+    this.confData.sort((a, b) => {
+      return b.diversityPercentage - a.diversityPercentage;
+    });
+  }
+
+  assignRanks() {
+    for (var i = 0, rank = 1; i < this.confData.length; i++) {
+      if (
+        i > 0 &&
+        this.confData[i].diversityPercentage <
+          this.confData[i - 1].diversityPercentage
+      ) {
+        rank++;
+      }
+      this.confData[i].rank = rank;
+
+      if (i > 0) {
+        if (this.confData[i].rank != this.confData[i - 1].rank) {
+          this.confData[i].displayRank = `${rank}`;
+        } else {
+          this.confData[i].displayRank = "";
+        }
+      } else {
+        this.confData[i].displayRank = "1";
+      }
+    }
+  }
+}
 @Component({
   selector: "app-confdata",
   styleUrls: ["confdata.component.css"],
@@ -43,49 +83,16 @@ export class ConfdataComponent {
   }
 
   private createconfData(rawData: Object[]) {
+    var confCollection = new ConfDataCollection();
     rawData.forEach((rawConfData: Object) => {
       var confData = rawConfData as ConfData;
-      confData.diversityPercentageNormalised = Math.round(
-        confData.diversityPercentage * 100
-      );
-      this.confData.push(confData);
+      confCollection.add(confData);
     });
 
-    this.confData = this.sortByDiversity(this.confData);
-    this.confData = this.assignRanks(this.confData);
+    confCollection.sortByDiversity();
+    confCollection.assignRanks();
 
+    this.confData = confCollection.confData;
     this.confDataLoaded = true;
-  }
-
-  private sortByDiversity(confs: ConfData[]) {
-    confs.sort((a, b) => {
-      return b.diversityPercentage - a.diversityPercentage;
-    });
-
-    return confs;
-  }
-
-  private assignRanks(confs: ConfData[]) {
-    for (var i = 0, rank = 1; i < confs.length; i++) {
-      if (
-        i > 0 &&
-        confs[i].diversityPercentage < confs[i - 1].diversityPercentage
-      ) {
-        rank++;
-      }
-      confs[i].rank = rank;
-
-      if (i > 0) {
-        if (confs[i].rank != confs[i - 1].rank) {
-          confs[i].displayRank = `${rank}`;
-        } else {
-          confs[i].displayRank = "";
-        }
-      } else {
-        confs[i].displayRank = "1";
-      }
-    }
-
-    return confs;
   }
 }
