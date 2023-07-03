@@ -18,7 +18,11 @@
   color: white;
 }
 
-.mat-column-rank,
+.mat-column-rank {
+  border-bottom: 3px solid black;
+  text-align: center;
+}
+
 .mat-column-name {
   border-bottom: 3px solid black;
 }
@@ -26,17 +30,6 @@
 .confdata-row {
   background-color: #4d4d4d;
   color: white;
-
-  > .mat-column-rank {
-    width: 32px;
-    padding-right: 24px;
-    text-align: center;
-  }
-
-  > .mat-column-name {
-    padding-left: 16px;
-    font-size: 20px;
-  }
 }
 
 .mat-column-diversityPercentageBar {
