@@ -1,18 +1,6 @@
 import { Component } from "@angular/core";
 import { ConfDataService } from "../confdata/confdata.service";
-
-interface ConfData {
-  confDate: Date;
-  name: string;
-  location: string;
-  numberOfWomen: number;
-  numberOfMen: number;
-  dateAdded: Date;
-  year: number;
-  totalSpeakers: number;
-  diversityPercentage: number;
-  diversityPercentageNormalised: number;
-}
+import { ConfData } from "../domain/confdatacollection";
 
 interface ConfSummary {
   averageDiversityPercentage: number;
